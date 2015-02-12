@@ -10,8 +10,6 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Symbols;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
-using Ast.OpenCsv;
-
 using System.Xml;
 
 namespace ParseTest
@@ -29,156 +27,137 @@ namespace ParseTest
             return errors;
 
         }
-        public static int parseTest(string inFile, string outFile)
+
+        public static int parseTest(string inFile, string outFile1, string outFile2, string outFile3)
         {
-            /* for xml file
-           int count = 0;
-           XmlTextReader reader = new XmlTextReader("C:\\Users\\Di\\Desktop\\csharp_snippets\\postaa_snippet.xml");
-           //string contents = "";
-           while (reader.Read())
-           {
-               switch (reader.Name.ToString())
-               {
-                   case "snippet":
-                       string code = reader.ReadString();
-                       // Console.WriteLine("snippet is:" + code);
-
-                       SyntaxTree tree = SyntaxFactory.ParseSyntaxTree(code);
-
-                       if( tree.GetDiagnostics().Count() == 0)
-                       {
-                           count++;
-                       }
-
-
-                       break;
-
-               }
-
-           }
-           Console.WriteLine(count);
-           Console.ReadLine();
-          **/
             int parsableCount = 0;
 
-            // for csv file
-            StreamReader streamReader = new StreamReader(inFile);
-            string text = streamReader.ReadToEnd();
-            streamReader.Close();
-            DataTable inTable = CsvReader.Parse(text);
-            DataTable outTable = new DataTable();
-            outTable.Columns.Add("Id", typeof(string));
-            outTable.Columns.Add("error", typeof(string));
-            for (int i = 0; i < inTable.Rows.Count; i++)
-            {
-                string snippet = (string)inTable.Rows[i][1];
+            string[] lines = System.IO.File.ReadAllLines(inFile);
 
-                // clean snippet
-                snippet = XmlConvert.DecodeName(snippet);
-                snippet = snippet.Replace("&#xA;", "\n").Replace("<br>", "\n");
+            foreach (string line in lines){
+                string[] elements = line.Split(new string[] { "Di2015UniqueSeparator" }, StringSplitOptions.None);
+                string snippet = XmlConvert.DecodeName(elements[1]);
 
+                snippet = snippet.Replace("Di2015NewLine", "\n").Replace("<br>", "\n");
+               
 
                 List<string> errmsg = parsable(snippet);
 
-                if (errmsg.Any())
+                using (System.IO.StreamWriter file1 = new System.IO.StreamWriter(outFile1, true))
                 {
-                    foreach (string s in errmsg)
+                    using (System.IO.StreamWriter file2 = new System.IO.StreamWriter(outFile2, true))
                     {
-                        outTable.Rows.Add(inTable.Rows[i][0], s);
+                        using (System.IO.StreamWriter file3 = new System.IO.StreamWriter(outFile3, true))
+                        {
+                            if (errmsg.Any())
+                            {
+                                foreach (string s in errmsg)
+                                {
+                                    file1.WriteLine(elements[0] + "Di2015UniqueSeparator" + s);// log the error messages
+                                }
+                                // store the unparsable snippets
+                                file2.WriteLine(line);
+                            }
+                            else
+                            {
+                                // store the parsable snippets
+                                file3.WriteLine(line);
+                                parsableCount++;
+                            }
+                        }
+                           
                     }
-                }
-                else
-                {
-                    Console.WriteLine(inTable.Rows[i][0]);
-                    parsableCount++;
+                    
+                   
                 }
             }
 
-            string output = CsvWriter.DataTableToCsv(outTable, false, true);
-            StreamWriter streamWriter = new StreamWriter(outFile);
-            streamWriter.Write(output);
-            streamWriter.Flush();
-            streamWriter.Close();
             Console.WriteLine(parsableCount);
             return parsableCount;
-
-
         }
-        
-        static void Main(string[] args)
-        {
-            string[] postSplits = { "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah",
-                "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar",
-                "as", "at", "au", "av", "aw", "ax" };
 
-            string inFile = "";
-            string outFile = "";
-            string unparsableFile = "";
+    /*    
+         static void Main(string[] args)
+         {
+             string[] postSplits = { 
+                 "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah",
+                 "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar",
+                 "as", "at", "au", "av", "aw", "ax", "ay", "az", "ba", "bb",
+                 "bc", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bk", "bl",
+                 "bm", "bn", "bo", "bp", "bq", "br", "bs", "bt", "bu", "bv",
+                 "bw", "bx", "by", "bz", "ca", "cb", "cc", "cd", "ce", "cf",
+                 "cg", "ch", "ci", "cj", "ck", "cl", "cm", "cn", "co", "cp",
+                 "cq", "cr", "cs", "ct", "cu", "cv", "cw", "cx", "cy", "cz",
+                 "da", "db", "dc", "dd", "de", "df", "dg", "dh", "di", "dj",
+                 "dk", "dl", "dm", "dn", "do", "dp", "dq", "dr", "ds", "dt",
+                 "du", "dv" };
 
-            DataTable countTable = new DataTable();
-            countTable.Columns.Add("file", typeof(string));
-            countTable.Columns.Add("compileCount", typeof(string));
 
-            /*
-                
-                             foreach (String post in postSplits)
-                             {
-                                 Console.WriteLine("processing post" + post + " ......");
-                                 inFile = "C:\\StackOverflow\\C#_removeSingleLine\\post" + post + "_remove.csv";
-                                 outFile = "C:\\StackOverflow\\C#_parseErrorAfterRemoveSingleLine\\post" + post + "_error.csv";
-                                 countTable.Rows.Add("post" + post, parseTest(inFile, outFile));
-                             }
-
-                             string output = CsvWriter.DataTableToCsv(countTable, false, true);
-                             StreamWriter streamWriter = new StreamWriter("C:\\StackOverflow\\C#_parseErrorAfterRemoveSingleLine\\parsableCountAfterRemoveSingleLine.csv");
-
-            
-            
-             foreach (String post in postSplits)
+             string inFile = "";
+             string outFile1 = "";
+             string outFile2 = "";
+            string outFile3 = "";
+          
+            // Initial parse
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\StackOverflow\\C#\\parseErrorInitial\\parsableCountInitial.txt"))
+                        {
+                            foreach (String post in postSplits)
                             {
                                 Console.WriteLine("processing post" + post + " ......");
-                                inFile = "C:\\StackOverflow\\C#_removeSingleWord\\post" + post + "_remove.csv";
-                                outFile = "C:\\StackOverflow\\C#_parseErrorAfterRemoveSingleWord\\post" + post + "_error.csv";
-                                countTable.Rows.Add("post" + post, parseTest(inFile, outFile));
+                                inFile = "C:\\StackOverflow\\C#\\snippets\\post" + post + "_snippet.txt";
+                                outFile1 = "C:\\StackOverflow\\C#\\parseErrorInitial\\post" + post + "_error.txt";
+                                outFile2 = "C:\\StackOverflow\\C#\\unparsableInitial\\post" + post + "_unparsable.txt";
+                                outFile3 = "C:\\StackOverflow\\C#\\parsableInitial\\post" + post + "_parsable.txt";
+                                file.WriteLine("post" + post + "Di2015UniqueSeparator" + parseTest(inFile, outFile1, outFile2, outFile3));
                             }
+                        }
 
-                            string output = CsvWriter.DataTableToCsv(countTable, false, true);
-                            StreamWriter streamWriter = new StreamWriter("C:\\StackOverflow\\C#_parseErrorAfterRemoveSingleWord\\parsableCountAfterRemoveSingleLine.csv");
+               
+                            // parse after remove single word
 
+                                          using (System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\StackOverflow\\C#\\parseErrorAfterRemoves\\parsableCountAfterRemoves.txt"))
+                                          {
+                                              foreach (String post in postSplits)
+                                              {
+                                                  Console.WriteLine("processing post" + post + " ......");
+                                                  inFile = "C:\\StackOverflow\\C#\\removeSingleWord\\post" + post + "_remove.txt";
+                                                  outFile1 = "C:\\StackOverflow\\C#\\parseErrorAfterRemoves\\post" + post + "_error.txt";
+                                                  outFile2 = "C:\\StackOverflow\\C#\\unparsableAfterRemoves\\post" + post + "_unparsable.txt";
+                                                  outFile3 = "C:\\StackOverflow\\C#\\parsableAfterRemoves\\post" + post + "_parsable.txt";
+                                                  file.WriteLine("post" + post+ "Di2015UniqueSeparator" + parseTest(inFile,outFile1, outFile2, outFile3));
+                                              }
+                                          }
+                                          
+                                 
             
-             foreach (String post in postSplits)
-             {
-                 Console.WriteLine("processing post" + post + " ......");
-                 inFile = "C:\\StackOverflow\\C#_addClassHeader\\post" + post + "_addClassHeader.csv";
-                 outFile = "C:\\StackOverflow\\C#_parseErrorAfterAddClassHeader\\post" + post + "_error.csv";
-                 countTable.Rows.Add("post" + post, parseTest(inFile, outFile));
-             }
+           
+            // parse after fix
+                                                 using (System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\StackOverflow\\C#\\parseErrorAfterFix2\\parsableCountAfterFix2.txt"))
+                                                 {
+                                                     foreach (String post in postSplits)
+                                                     {
+                                                         Console.WriteLine("processing post" + post + " ......");
+                                                         inFile = "C:\\StackOverflow\\C#\\fix2\\post" + post + "_fix2.txt";
+                                                         outFile1 = "C:\\StackOverflow\\C#\\parseErrorAfterFix2\\post" + post + "_error.txt";
+                                                         outFile2 = "C:\\StackOverflow\\C#\\unparsableAfterFix2\\post" + post + "_unparsable.txt";
+                                                         outFile3 = "C:\\StackOverflow\\C#\\parsableAfterFix2\\post" + post + "_parsable.txt";
+                                                         file.WriteLine("post" + post + "Di2015UniqueSeparator" + parseTest(inFile, outFile1, outFile2, outFile3));
+                                                     }
+                                                 }
 
-             string output = CsvWriter.DataTableToCsv(countTable, false, true);
-             StreamWriter streamWriter = new StreamWriter("C:\\StackOverflow\\C#_parseErrorAfterAddClassHeader\\parsableCountAfterAddClassHeader.csv");
-            */
-
-       foreach (String post in postSplits)
-       {
-           Console.WriteLine("processing post" + post + " ......");
-           inFile = "C:\\StackOverflow\\C#_addSemicolon\\post" + post + "_addSemicolon.csv";
-           outFile = "C:\\StackOverflow\\C#_parseErrorAfterAddSemicolon\\post" + post + "_error.csv";
-           countTable.Rows.Add("post" + post, parseTest(inFile, outFile));
-       }
-
-       string output = CsvWriter.DataTableToCsv(countTable, false, true);
-       StreamWriter streamWriter = new StreamWriter("C:\\StackOverflow\\C#_parseErrorAfterAddSemicolon\\parsableCountAfterAddSemicolon.csv");
-       
-
-            streamWriter.Write(output);
-            streamWriter.Flush();
-            streamWriter.Close();
-            Console.ReadLine();
-        }
-    }
     
+   
 
-}
+
+            Console.ReadLine();
+
+                 
+        }
+        */
+
+    }
+
+    }
 
 
 

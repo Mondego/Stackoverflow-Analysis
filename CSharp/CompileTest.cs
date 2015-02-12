@@ -20,10 +20,7 @@ namespace CompileTest
 
         public static string compilable(string code)
         {
-            //Write your code – most important part. 
-            //Here you can write classes and methods into the string variable. We will add only Main method:
-
-
+           
             //Create the provider and parameters of the compiler
             CSharpCodeProvider provider = new CSharpCodeProvider();
             CompilerParameters parameters = new CompilerParameters();
@@ -49,201 +46,132 @@ namespace CompileTest
 
                 foreach (CompilerError error in results.Errors)
                 {
-                    sb.AppendLine(String.Format("Error ({0}): {1}", error.ErrorNumber, error.ErrorText));
+                    sb.AppendLine(String.Format("error {0}: {1}", error.ErrorNumber, error.ErrorText));
                 }
 
                 // throw new InvalidOperationException(sb.ToString());
 
-             //   Console.WriteLine(sb.ToString());
+                //   Console.WriteLine(sb.ToString());
                 return sb.ToString();
             }
             return "";
 
         }
 
-        public static int compileTest(string inFile, string outFile, string uncompilableFile)
+        public static int compileTest(string inFile, string outFile1)
         {
-            /* // for xml files
-
-              XmlTextReader reader = new XmlTextReader("C:\\Users\\Di\\Desktop\\csharp_snippets\\postaa_snippet.xml");
-              string contents = "";
-              while (reader.Read())
-              {
-                  switch (reader.Name.ToString())
-                  {
-                      case "snippet":
-                          //   Console.WriteLine("snippet is:" + reader.ReadString());
-                          string snippet = reader.ReadString();
-                          if (compilable(snippet))
-                          {
-                              contents = contents + count + "------" + snippet + "\n";
-                              count++;
-                          }
-                          break;
-
-                  }
-
-              }
-              System.IO.File.WriteAllText(@"C:\\Users\\Di\\Desktop\\postaa_pass.txt", contents);
-              Console.WriteLine(count);
-              Console.ReadLine();
-       */
 
             int compilableCount = 0;
 
-            // for csv file
-            StreamReader streamReader = new StreamReader(inFile);
-            string text = streamReader.ReadToEnd();
-            streamReader.Close();
-            DataTable inTable = CsvReader.Parse(text);
-            DataTable outTable = new DataTable();
-            outTable.Columns.Add("Id", typeof(string));
-            outTable.Columns.Add("error", typeof(string));
-            DataTable uncompilableTable = new DataTable();
-            uncompilableTable.Columns.Add("Id", typeof(string));
-            uncompilableTable.Columns.Add("error", typeof(string));
+            string[] lines = System.IO.File.ReadAllLines(inFile);
 
-            for (int i = 0; i < inTable.Rows.Count; i++)
+            foreach (string line in lines)
             {
-                string snippet = (string)inTable.Rows[i][1];
+                string[] elements = line.Split(new string[] { "Di2015UniqueSeparator" }, StringSplitOptions.None);
+                string snippet = XmlConvert.DecodeName(elements[1]);
 
-                // clean snippet
-                snippet = XmlConvert.DecodeName(snippet);
-                snippet = snippet.Replace("&#xA;", "\n").Replace("<br>", "\n");
+                snippet = snippet.Replace("Di2015NewLine", "\n").Replace("<br>", "\n");
 
-
-                string errmsg = compilable(snippet);
-
-                if (!errmsg.Equals(""))
+                string errMsg = "";
+                if(snippet != null)
                 {
-                    errmsg = errmsg.Trim();
-                    object[] array = errmsg.Split('\n');
-                    foreach (object a in array)
-                    {
-                        outTable.Rows.Add(inTable.Rows[i][0], a);
-                    }
-
-                    uncompilableTable.Rows.Add(inTable.Rows[i][0], inTable.Rows[i][1]);
+                    errMsg = compilable(snippet);
                 }
-                else
+                
+
+                using (System.IO.StreamWriter file1 = new System.IO.StreamWriter(outFile1, true))
                 {
-                    Console.WriteLine(inTable.Rows[i][0]);
-                    compilableCount++;
+                    
+                    
+                        if (errMsg != null && errMsg != "")
+                        {
+
+                            file1.Write(errMsg);// log the error messages
+
+                        
+                        }
+                        else
+                        {
+                            compilableCount++;
+                        }
+                    
+
+
                 }
             }
-
-            string output1 = CsvWriter.DataTableToCsv(outTable, false, true);
-            string output2 = CsvWriter.DataTableToCsv(uncompilableTable, false, true);
-            StreamWriter streamWriter = new StreamWriter(outFile);
-            streamWriter.Write(output1);
-            streamWriter.Flush();
-            streamWriter.Close();
-            streamWriter = new StreamWriter(uncompilableFile);
-            streamWriter.Write(output2);
-            streamWriter.Flush();
-            streamWriter.Close();
             Console.WriteLine(compilableCount);
             return compilableCount;
-
-            /*   // single snippet test 
-
-                 string snippet = "List<KeyValuePair<string, string>> myList = aDictionary.ToList();&#xA;&#xA;myList.Sort(&#xA;    delegate(KeyValuePair<string, string> firstPair,&#xA;    KeyValuePair<string, string> nextPair)&#xA;    {&#xA;        return firstPair.Value.CompareTo(nextPair.Value);&#xA;    }&#xA;);&#xA;";
-                 // clean snippet
-                 snippet = XmlConvert.DecodeName(snippet);
-                 snippet = snippet.Replace("&#xA;", "\n").Replace("<br>", "\n");
-                // Console.WriteLine(snippet);
-                 DataTable outTable = new DataTable();
-                 outTable.Columns.Add("Id", typeof(string));
-                 outTable.Columns.Add("error", typeof(string));
-
-                 string errmsg = compilable(snippet);
-                 errmsg = errmsg.Trim();
-                 object[] array = errmsg.Split('\n');
-                 foreach (object a in array)
-                 {
-                    // Console.WriteLine(a);           
-                    outTable.Rows.Add(1, a);                      
-                 }
-                 string output = CsvWriter.DataTableToCsv(outTable, false, true);
-                 StreamWriter streamWriter = new StreamWriter("C:\\StackOverflow\\C#_compileError\\postaa.csv");
-                 streamWriter.Write(output);
-                 streamWriter.Flush();
-                 streamWriter.Close();
-             //    Console.Read();
-             */
         }
 
-   
 
 
+        
 
-        static void Main(string[] args)
-        {
-            string[] postSplits = { "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah",
-                "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar",
-                "as", "at", "au", "av", "aw", "ax", "ay", "az" };
+                static void Main(string[] args)
+                {
+                 string[] postSplits = {
+                 "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah",
+                 "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar",
+                 "as", "at", "au", "av", "aw", "ax", "ay", "az", "ba", "bb",
+                 "bc", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bk", "bl",
+                 "bm", "bn", "bo", "bp", "bq", "br", "bs", "bt", "bu", "bv",
+                 "bw", "bx", "by", "bz", "ca", "cb", "cc", "cd", "ce", "cf",
+                 "cg", "ch", "ci", "cj", "ck", "cl", "cm", "cn", "co", "cp",
+                 "cq", "cr", "cs", "ct", "cu", "cv", "cw", "cx", "cy", "cz",
+                 "da", "db", "dc", "dd", "de", "df", "dg", "dh", "di", "dj",
+                 "dk", "dl", "dm", "dn", "do", "dp", "dq", "dr", "ds", "dt",
+                 "du", "dv" };
 
-            string inFile = "";
-            string outFile = "";
-            string uncompilableFile = "";
-
-            DataTable countTable = new DataTable();
-            countTable.Columns.Add("file", typeof(string));
-            countTable.Columns.Add("compileCount", typeof(string));
-            foreach (String post in postSplits)
-            {
-                Console.WriteLine("processing post" + post);
-                inFile = "C:\\StackOverflow\\C#_snippet\\post" + post + "_snippet.csv";
-                outFile = "C:\\StackOverflow\\C#_compileError\\post" + post + "_error.csv";
-                uncompilableFile = "C:\\StackOverflow\\C#_uncompilableSnippet\\post" + post + "_snippet.csv";
-                countTable.Rows.Add("post" + post, compileTest(inFile, outFile, uncompilableFile));
-            }
-
-
-            string output = CsvWriter.DataTableToCsv(countTable, false, true);
-            StreamWriter streamWriter = new StreamWriter("C:\\StackOverflow\\C#_compileError\\compilableCount.csv");
+                        string inFile = "";
+                        string outFile1 = "";
+                    
             /*
-            foreach (String post in postSplits)
-            {
-                Console.WriteLine("processing post" + post + " after remove......");
-                inFile = "C:\\StackOverflow\\C#_remove\\post" + post + "_remove.csv";
-                outFile = "C:\\StackOverflow\\C#_compileErrorAfterRemove\\post" + post + "_error.csv";
-                countTable.Rows.Add("post" + post, compileTest(inFile, outFile));
-            }
+          // imitial compile
+          using (System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\StackOverflow\\C#\\compileErrorInitial\\compilableCountInitial.txt"))
+              {
+                  foreach (String post in postSplits)
+                  {
+                      Console.WriteLine("processing post" + post + " ......");
+                      inFile = "C:\\StackOverflow\\C#\\parsableInitial\\post" + post + "_parsable.txt";
+                      outFile1 = "C:\\StackOverflow\\C#\\compileErrorInitial\\post" + post + "_error.txt";
             
+                      file.WriteLine("post" + post + "Di2015UniqueSeparator" + compileTest(inFile, outFile1));
+                  }
+              }
+             */ 
 
-            string output = CsvWriter.DataTableToCsv(countTable, false, true);
-            StreamWriter streamWriter = new StreamWriter("C:\\StackOverflow\\C#_compileErrorAfterRemove\\compilableCountAfterRemove.csv");
-            */
             /*
-                        foreach (String post in postSplits)
-                        {
-                            Console.WriteLine("processing post" + post + " after add class header......");
-                            inFile = "C:\\StackOverflow\\C#_addClassHeader\\post" + post + "_addClassHeader.csv";
-                            outFile = "C:\\StackOverflow\\C#_compileErrorAfterAddClassHeader\\post" + post + "_error.csv";
-                            countTable.Rows.Add("post"+post, compileTest(inFile, outFile));
-                        }
-
-                        string output = CsvWriter.DataTableToCsv(countTable, false, true);
-                        StreamWriter streamWriter = new StreamWriter("C:\\StackOverflow\\C#_compileErrorAfterAddClassHeader\\compilableCountAfterAddClassHeader.csv");
-            */
-            /*          foreach (String post in postSplits)
-                        {
-                            Console.WriteLine("processing post" + post + " after add semicolon......");
-                            inFile = "C:\\StackOverflow\\C#_addSemicolon\\post" + post + "_addSemicolon.csv";
-                            outFile = "C:\\StackOverflow\\C#_compileErrorAfterAddSemicolon\\post" + post + "_error.csv";
-                            countTable.Rows.Add("post" + post, compileTest(inFile, outFile));
-                        }
-
-                        string output = CsvWriter.DataTableToCsv(countTable, false, true);
-                        StreamWriter streamWriter = new StreamWriter("C:\\StackOverflow\\C#_compileErrorAfterAddSemicolon\\compilableCountAfterAddSemicolon.csv");
-             */
-            streamWriter.Write(output);
-            streamWriter.Flush();
-            streamWriter.Close();
-            Console.ReadLine();
+            // compile after remove
+                                using (System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\StackOverflow\\C#\\compileErrorAfterRemoves\\compilableCountAfterRemoves.txt"))
+                                {
+                                    foreach (String post in postSplits)
+                                    {
+                                        Console.WriteLine("processing post" + post + " ......");
+                                        inFile = "C:\\StackOverflow\\C#\\parsableAfterRemoves\\post" + post + "_parsable.txt";
+                                        outFile1 = "C:\\StackOverflow\\C#\\compileErrorAfterRemoves\\post" + post + "_error.txt";
+                                        file.WriteLine("post" + post + "Di2015UniqueSeparator" + compileTest(inFile, outFile1));
+                                    }
+                                }
+              */
+              
+            // compile after fix2
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\StackOverflow\\C#\\compileErrorAfterFix2\\compilableCountAfterFix2.txt"))
+            {
+                foreach (String post in postSplits)
+                {
+                    Console.WriteLine("processing post" + post + " ......");
+                    inFile = "C:\\StackOverflow\\C#\\parsableAfterFix2\\post" + post + "_parsable.txt";
+                    outFile1 = "C:\\StackOverflow\\C#\\compileErrorAfterFix2\\post" + post + "_error.txt";
+                    file.WriteLine("post" + post + "Di2015UniqueSeparator" + compileTest(inFile, outFile1));
+                }
+            }
+          
         }
+
+              
     }
+
+
 }
 
 
