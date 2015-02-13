@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class CountParseError {
+public class CleanRunError {
 	public static void main(String[] args) {
 
 		String[] postSplits = { "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar", "as",
@@ -23,64 +23,39 @@ public class CountParseError {
 				"dh", "di", "dj", "dk", "dl", "dm", "dn", "do", "dp", "dq", "dr", "ds", "dt", "du", "dv" };
 
 		String inFile = "";
-		int totalCount=0;
-		Map<String, Integer> errorMap = new HashMap<String, Integer>();
-
+		String outFile = "";
+		
 		for (String post : postSplits) {
 			System.out.println("processing post" + post + "......");
-			inFile = "C:\\StackOverflow\\JS\\parseError\\post" + post + "_error.txt";
+			inFile = "C:\\StackOverflow\\JS\\runError\\post" + post + "_error.txt";
+			outFile = "C:\\StackOverflow\\JS\\runErrorClean\\post" + post+ "_error.txt";
 
 			BufferedReader br;
-			
+			BufferedWriter writer;
 			try {
 				br = new BufferedReader(new FileReader(new File(inFile)));
-				
+				writer = new BufferedWriter(new FileWriter(new File(outFile)));
+			
 				String temp;
 				while ((temp = br.readLine()) != null) {
-					
-					String errMsg = temp;
-
-					if (errorMap.containsKey(errMsg)) {
-						errorMap.put(errMsg, errorMap.get(errMsg) + 1);
-					} else {
-						errorMap.put(errMsg, 1);
+					if(temp.contains("Error: ")){
+						writer.write(temp + '\n');
 					}
-					
-					totalCount +=1;
 				}
+				writer.close();
 
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			
 
 		}
 
-		ArrayList<Map.Entry<String, Integer>> errorList = new ArrayList<Map.Entry<String, Integer>>(errorMap.entrySet());
-		Collections.sort(errorList, new Comparator<Map.Entry<String, Integer>>() {
-			public int compare(Entry<String, Integer> arg0, Entry<String, Integer> arg1) {
-				if (arg0.getValue() - arg1.getValue() > 0)
-					return -1;
-				else if (arg0.getValue() - arg1.getValue() == 0) {
-					return 0;
-				} else
-					return 1;
-			}
-		});
+		
+	
 
-		BufferedWriter writer1;
-		try {
-			writer1 = new BufferedWriter(new FileWriter(new File("C:\\StackOverflow\\JS\\parseError\\errorCount.txt")));
-			for (Map.Entry<String, Integer> entry : errorList) {
-				writer1.write(entry.getKey() + "Di2015UniqueSeparator" + entry.getValue() + "\n");
-			}
-			writer1.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		System.out.println(totalCount);
 	}
 
 }

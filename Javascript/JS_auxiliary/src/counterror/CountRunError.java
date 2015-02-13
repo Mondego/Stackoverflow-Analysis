@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class CountParseError {
+public class CountRunError {
 	public static void main(String[] args) {
 
 		String[] postSplits = { "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar", "as",
@@ -23,15 +23,15 @@ public class CountParseError {
 				"dh", "di", "dj", "dk", "dl", "dm", "dn", "do", "dp", "dq", "dr", "ds", "dt", "du", "dv" };
 
 		String inFile = "";
-		int totalCount=0;
+
 		Map<String, Integer> errorMap = new HashMap<String, Integer>();
 
 		for (String post : postSplits) {
 			System.out.println("processing post" + post + "......");
-			inFile = "C:\\StackOverflow\\JS\\parseError\\post" + post + "_error.txt";
+			inFile = "C:\\StackOverflow\\JS\\runErrorClean\\post" + post + "_error.txt";
+			
 
 			BufferedReader br;
-			
 			try {
 				br = new BufferedReader(new FileReader(new File(inFile)));
 				
@@ -45,8 +45,6 @@ public class CountParseError {
 					} else {
 						errorMap.put(errMsg, 1);
 					}
-					
-					totalCount +=1;
 				}
 
 			} catch (FileNotFoundException e) {
@@ -71,7 +69,7 @@ public class CountParseError {
 
 		BufferedWriter writer1;
 		try {
-			writer1 = new BufferedWriter(new FileWriter(new File("C:\\StackOverflow\\JS\\parseError\\errorCount.txt")));
+			writer1 = new BufferedWriter(new FileWriter(new File("C:\\StackOverflow\\JS\\runErrorClean\\errorCount.txt")));
 			for (Map.Entry<String, Integer> entry : errorList) {
 				writer1.write(entry.getKey() + "Di2015UniqueSeparator" + entry.getValue() + "\n");
 			}
@@ -80,7 +78,7 @@ public class CountParseError {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(totalCount);
+
 	}
 
 }
