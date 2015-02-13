@@ -8613,8 +8613,7 @@
 848856Di2015UniqueSeparatorvar iter = matrix.MakeCustomIterator(Di2015NewLine     new int[] { 0, 0 },Di2015NewLine     (coll, cur) => coll[cur[0]][cur[1]],Di2015NewLine     (cur) => cur[0] > 2 || cur[1] > 2,Di2015NewLine     // Increase the row, but stay on the same columnDi2015NewLine     (cur) => new int[] { cur[0] + 1, cur[1] });Di2015NewLine
 848856Di2015UniqueSeparatorvar iter = matrix.MakeCustomIterator(Di2015NewLine     new int[] { 0, 0 },Di2015NewLine     (coll, cur) => coll[cur[0]][cur[1]],Di2015NewLine     (cur) => cur[0] > 2 || cur[1] > 2,Di2015NewLine     // Stay on the same row, but increase the columnDi2015NewLine     (cur) => new int[] { cur[0], cur[1] + 1 });Di2015NewLine
 848856Di2015UniqueSeparatorvar iter = matrix.MakeCustomIterator(Di2015NewLine     new int[] { 0, 0 },Di2015NewLine     (coll, cur) => coll[cur[0]][cur[1]],Di2015NewLine     (cur) => cur[0] > 2,Di2015NewLine     // Stay on the same row if we can, otherwise move to next rowDi2015NewLine     (cur) => cur[1] == 2 ? new int[] { cur[0] + 1, 0 }Di2015NewLine                          : new int[] { cur[0], cur[1] + 1});Di2015NewLine
-848863Di2015UniqueSeparator
-
+848863Di2015UniqueSeparatorDi2015NewLineDi2015NewLine
 848863Di2015UniqueSeparator<Value>3</Value>Di2015NewLine
 848863Di2015UniqueSeparator<Value>Di2015NewLine    3Di2015NewLine</Value>Di2015NewLine
 848888Di2015UniqueSeparatorConvert.ToInt32(String value, Int32 fromBase)

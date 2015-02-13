@@ -6092,8 +6092,7 @@
 10331612Di2015UniqueSeparatorstatic async void DownloadFileAsync(Di2015NewLine    this HttpClient httpClient,Di2015NewLine    string requestUri,Di2015NewLine    string fileName,Di2015NewLine    StorageFolder folder = null)Di2015NewLine{Di2015NewLine    folder = folder ?? ApplicationData.Current.LocalFolder;Di2015NewLineDi2015NewLine    var file = await folder.CreateFileAsync(Di2015NewLine        fileName, CreationCollisionOption.ReplaceExisting);Di2015NewLineDi2015NewLine    using (var httpStream = await httpClient.GetStreamAsync(uri))Di2015NewLine    using (var fileStream = await file.OpenAsync(FileAccessMode.ReadWrite))Di2015NewLine    {Di2015NewLine        await httpStream.CopyToAsync(fileStream.AsStreamForWrite());Di2015NewLine    }Di2015NewLine}Di2015NewLine
 10331619Di2015UniqueSeparatorvar chartArea = new ChartArea("MyChart");Di2015NewLine...Di2015NewLinechartArea.AxisY.Title = "Times(s)";Di2015NewLinechartArea.AxisY.Title = "Speed (m/s)";Di2015NewLine
 10331702Di2015UniqueSeparatoradd key="msg_test" value="This isDi2015NewLinetest message."Di2015NewLine
-10331702Di2015UniqueSeparatoradd key="msg_test" value="This is
-test message."Di2015NewLine
+10331702Di2015UniqueSeparatoradd key="msg_test" value="This isDi2015NewLineDi2015NewLinetest message."Di2015NewLine
 10331815Di2015UniqueSeparatorCODE_VALUE.foo
 10331815Di2015UniqueSeparator<script>Di2015NewLine var foo =  <%= CODE_VALUE.foo %>;Di2015NewLine<script>Di2015NewLine<script type="text/javascript" src="fileToUseTheFoo.js">   Di2015NewLine</script>Di2015NewLine
 10331849Di2015UniqueSeparatorinput type="submit"

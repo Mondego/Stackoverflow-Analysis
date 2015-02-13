@@ -6327,8 +6327,7 @@
 11781956Di2015UniqueSeparator\\\\r\\\\n
 11781956Di2015UniqueSeparatorsrPortSuffix = srPortSuffix.Replace(@"\\r", "\\r").Replace(@"\\n", "\\n");Di2015NewLine
 11781956Di2015UniqueSeparator<rPortSuffix>Di2015NewLine</rPortSuffix>Di2015NewLine
-11781956Di2015UniqueSeparator<rPortSuffix>
-</rPortSuffix>Di2015NewLine
+11781956Di2015UniqueSeparator<rPortSuffix>Di2015NewLineDi2015NewLine</rPortSuffix>Di2015NewLine
 11782059Di2015UniqueSeparatorpublic static IEnumerable<T> Order<T, TKey>(this IEnumerable<T> source, Func<T, TKey> selector, bool ascending)Di2015NewLine{Di2015NewLine    if (ascending)Di2015NewLine    {Di2015NewLine        return source.OrderBy(selector);Di2015NewLine    }Di2015NewLine    elseDi2015NewLine    {Di2015NewLine        return source.OrderByDescending(selector);Di2015NewLine    }Di2015NewLine}Di2015NewLine
 11782059Di2015UniqueSeparatorlst = lst.Order( s => s.Letter, isAscending );Di2015NewLine
 11782059Di2015UniqueSeparator"letter"
@@ -7272,10 +7271,9 @@
 11808429Di2015UniqueSeparatorforeach
 11808433Di2015UniqueSeparator        private void richTextBox1_MouseDown(object sender, MouseEventArgs e)Di2015NewLine    {Di2015NewLine        if (e.Button == System.Windows.Forms.MouseButtons.Right)Di2015NewLine        {Di2015NewLine            MessageBox.Show("you got it!");Di2015NewLine        }Di2015NewLineDi2015NewLine    }Di2015NewLine
 11808512Di2015UniqueSeparator\\n
-11808512Di2015UniqueSeparator
-
+11808512Di2015UniqueSeparatorDi2015NewLine
 11808512Di2015UniqueSeparator\\r
-11808512Di2015UniqueSeparator
+11808512Di2015UniqueSeparatorDi2015NewLine
 11808512Di2015UniqueSeparator<![CDATA[]]>
 11808580Di2015UniqueSeparatorOutputStream.Flush();Di2015NewLine
 11808640Di2015UniqueSeparatorcon

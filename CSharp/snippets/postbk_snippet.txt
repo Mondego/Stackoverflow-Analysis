@@ -7609,8 +7609,7 @@
 8866286Di2015UniqueSeparatorvar clickCount = 0;Di2015NewLinevar timeoutID  = 0;Di2015NewLineDi2015NewLinefunction OnClick()Di2015NewLine{Di2015NewLine    clickCount++;Di2015NewLineDi2015NewLine    if (clickCount >= 2) {Di2015NewLine       clickCount = 0;          //reset clickCountDi2015NewLine       clearTimeout(timeoutID); //stop the single click callback from being calledDi2015NewLine       DoubleClickFunction();   //perform your double click actionDi2015NewLine    }Di2015NewLine    else if (clickCount == 1) {Di2015NewLine       //create a callback that will be called in a few milisecondsDi2015NewLine       //the callback time determines how long the user has to click a second timeDi2015NewLineDi2015NewLine       var callBack = function(){ Di2015NewLine                         //make sure this wasn't fired atDi2015NewLine                         //the same time they double clickedDi2015NewLine                         if (clickCount == 1) {      Di2015NewLine                            clickCount = 0;         //reset the clickCountDi2015NewLine                            SingleClickFunction();  //perform your single click actionDi2015NewLine                         }Di2015NewLine                      };Di2015NewLineDi2015NewLine       //This will call the callBack function in 500 milliseconds (1/2 second).Di2015NewLine       //If by that time they haven't clicked the LinkButton againDi2015NewLine       //We will perform the single click action. You can adjust theDi2015NewLine       //Time here to control how quickly the user has to double click.Di2015NewLine       timeoutID = setTimeout(callBack, 500); Di2015NewLine    }Di2015NewLine}Di2015NewLine
 8866317Di2015UniqueSeparatorusing (Html.BeginForm()) {....}
 8866317Di2015UniqueSeparatorusing
-8866370Di2015UniqueSeparator
-
+8866370Di2015UniqueSeparatorDi2015NewLine
 8866370Di2015UniqueSeparatorXDocument
 8866370Di2015UniqueSeparatorXDocument
 8866370Di2015UniqueSeparatorSystem.Xml
@@ -7618,10 +7617,9 @@
 8866370Di2015UniqueSeparatorXmlWriterSettings
 8866370Di2015UniqueSeparatorEntitize
 8866370Di2015UniqueSeparator\\r
-8866370Di2015UniqueSeparator
+8866370Di2015UniqueSeparatorDi2015NewLine
 8866370Di2015UniqueSeparator\\n
-8866370Di2015UniqueSeparator
-
+8866370Di2015UniqueSeparatorDi2015NewLine
 8866370Di2015UniqueSeparatorXmlWriter
 8866370Di2015UniqueSeparatorWriteString
 8866370Di2015UniqueSeparatorWriteString
@@ -7641,10 +7639,8 @@
 8866370Di2015UniqueSeparator&
 8866370Di2015UniqueSeparator&
 8866370Di2015UniqueSeparator\\r
-8866370Di2015UniqueSeparator
-
-8866370Di2015UniqueSeparator    public override void WriteString(string text)Di2015NewLine    {Di2015NewLine        text = text.Replace("\\r", "");Di2015NewLine        text = text.Replace("\\n", "
-");Di2015NewLine        text = text.Replace("\\t", "	");Di2015NewLine        base.WriteString(text);Di2015NewLine    }Di2015NewLine
+8866370Di2015UniqueSeparatorDi2015NewLine
+8866370Di2015UniqueSeparator    public override void WriteString(string text)Di2015NewLine    {Di2015NewLine        text = text.Replace("\\r", "Di2015NewLine");Di2015NewLine        text = text.Replace("\\n", "Di2015NewLine");Di2015NewLine        text = text.Replace("\\t", "	");Di2015NewLine        base.WriteString(text);Di2015NewLine    }Di2015NewLine
 8866370Di2015UniqueSeparatorXDocument
 8866370Di2015UniqueSeparatorusing (var textWriter = new StreamWriter(destination))Di2015NewLineusing (var xmlWriter = new EntitizingXmlWriter(textWriter))Di2015NewLine    document.Save(xmlWriter);Di2015NewLine
 8866370Di2015UniqueSeparatorWriteString

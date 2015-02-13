@@ -6012,8 +6012,7 @@
 7295490Di2015UniqueSeparatorid ADi2015NewLine
 7295490Di2015UniqueSeparator   /*/tr/td[a[@href='url-a']]Di2015NewLine                /following-sibling::td[2]Di2015NewLine                     /a/text()Di2015NewLine
 7295490Di2015UniqueSeparatorimg ADi2015NewLine
-7295490Di2015UniqueSeparator<xsl:stylesheet version="1.0"Di2015NewLine xmlns:xsl="http://www.w3.org/1999/XSL/Transform">Di2015NewLine <xsl:output omit-xml-declaration="yes" indent="yes"/>Di2015NewLineDi2015NewLine <xsl:template match="/">Di2015NewLine  <xsl:copy-of select=Di2015NewLine   "/*/tr/td[a[@href='url-a']]Di2015NewLine                /following-sibling::td[1]Di2015NewLine                     /a/text()"/>Di2015NewLineDi2015NewLine  <xsl:text>
-</xsl:text>Di2015NewLine  <xsl:copy-of select=Di2015NewLine   "/*/tr/td[a[@href='url-a']]Di2015NewLine                /following-sibling::td[2]Di2015NewLine                     /a/text()"/>Di2015NewLine </xsl:template>Di2015NewLine</xsl:stylesheet>Di2015NewLine
+7295490Di2015UniqueSeparator<xsl:stylesheet version="1.0"Di2015NewLine xmlns:xsl="http://www.w3.org/1999/XSL/Transform">Di2015NewLine <xsl:output omit-xml-declaration="yes" indent="yes"/>Di2015NewLineDi2015NewLine <xsl:template match="/">Di2015NewLine  <xsl:copy-of select=Di2015NewLine   "/*/tr/td[a[@href='url-a']]Di2015NewLine                /following-sibling::td[1]Di2015NewLine                     /a/text()"/>Di2015NewLineDi2015NewLine  <xsl:text>Di2015NewLine</xsl:text>Di2015NewLine  <xsl:copy-of select=Di2015NewLine   "/*/tr/td[a[@href='url-a']]Di2015NewLine                /following-sibling::td[2]Di2015NewLine                     /a/text()"/>Di2015NewLine </xsl:template>Di2015NewLine</xsl:stylesheet>Di2015NewLine
 7295490Di2015UniqueSeparatorid ADi2015NewLineimg ADi2015NewLine
 7295510Di2015UniqueSeparatornull
 7295510Di2015UniqueSeparatornull

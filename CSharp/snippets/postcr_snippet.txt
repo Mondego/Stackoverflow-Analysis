@@ -5510,10 +5510,7 @@
 15582762Di2015UniqueSeparator<LineBreak/>
 15582762Di2015UniqueSeparatorhelpBlock.Text = "Here is some text. \\n Here is \\n some \\n more.";Di2015NewLine
 15582762Di2015UniqueSeparatorHex
-15582762Di2015UniqueSeparator <TextBlock Text="Here is some text. 
- Here is 
- some 
- more."/>Di2015NewLine
+15582762Di2015UniqueSeparator <TextBlock Text="Here is some text. Di2015NewLine Here is Di2015NewLine some Di2015NewLine more."/>Di2015NewLine
 15582768Di2015UniqueSeparator^(?!\\$?\\d+(?:\\.\\d+)?$).+$Di2015NewLine
 15582768Di2015UniqueSeparator(?<!\\$?\\d+(?:\\.\\d+)?)Di2015NewLine
 15582800Di2015UniqueSeparatorint i = 0;Di2015NewLineFunc<int> f = ()=>i;Di2015NewLinei = 3;Di2015NewLineConsole.WriteLine(f());Di2015NewLine

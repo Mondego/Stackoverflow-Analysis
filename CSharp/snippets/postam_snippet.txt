@@ -9686,7 +9686,7 @@
 3427019Di2015UniqueSeparatorvar row = new Questionnaire();Di2015NewLinerow.q1 = txtQ1.Text;Di2015NewLinerow.q2 = dropDownQ2.SelectedValue;Di2015NewLine// etcDi2015NewLinedataContext.Questionnaires.Insert(row);Di2015NewLinedataContext.SubmitChanges();Di2015NewLine
 3427038Di2015UniqueSeparatorXmlNodeList nodeList = xDoc.SelectNodes("//Child1");Di2015NewLine
 3427038Di2015UniqueSeparatorXmlNodeList nodeList =Di2015NewLine    xDoc.SelectNodes("//Child1/descendant-or-self::node()|//Child1//@*");Di2015NewLine
-3427038Di2015UniqueSeparator<Child1 xmlns:test="http://www.test.com/xades#" Attribute1="c1" Bttribute="c2" Cttribute="c3">Di2015NewLine    <child11 Attribute11="c11">Element11</child11>Di2015NewLine  </Child1>Di2015NewLine
+3427038Di2015UniqueSeparator<Child1 xmlns:test="http://www.test.com/xades#" Attribute1="c1" Bttribute="c2" Cttribute="c3">Di2015NewLineDi2015NewLine    <child11 Attribute11="c11">Element11</child11>Di2015NewLineDi2015NewLine  </Child1>Di2015NewLine
 3427038Di2015UniqueSeparatorXmlNodeList nodeList =Di2015NewLine    xDoc.SelectNodes("//Child1[1]/descendant-or-self::node()|//Child1[1]//@*");Di2015NewLine
 3427038Di2015UniqueSeparator</Child1>
 3427046Di2015UniqueSeparator     private void Control_MouseDown(object sender, MouseButtonEventArgs e)Di2015NewLine    {Di2015NewLine       if( ((FrameworkElement)(e.OriginalSource)).Name == "PART_Rectangle")Di2015NewLine       {Di2015NewLine           //RectangleMouseDown Di2015NewLine      }Di2015NewLine    }Di2015NewLine

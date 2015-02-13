@@ -42,8 +42,17 @@ public class ExtractSnippets {
 		    		String snippet = rawSnippet.substring(6,  rawSnippet.length()-7);	
 		    		
 		    		if(snippet!="" && snippet!=null){
-		    			snippet= snippet.replace("&#xA;", "Di2015NewLine");
-		    			snippet= snippet.replace("&#xD;", "Di2015NewLine");
+		    			snippet= snippet.replaceAll("&(amp;)*#xA;", "Di2015NewLine");
+		    			snippet= snippet.replaceAll("&(amp;)*#xD;", "Di2015NewLine");
+		    			snippet= snippet.replaceAll("&(amp;)*#xa;", "Di2015NewLine");
+		    			snippet= snippet.replaceAll("&(amp;)*#xd;", "Di2015NewLine");
+		    			snippet= snippet.replaceAll("&(amp;)*#13;", "Di2015NewLine");
+		    			snippet= snippet.replaceAll("&(amp;)*#10;", "Di2015NewLine");
+		    			snippet= snippet.replaceAll("&(amp;)*#x0A;", "Di2015NewLine");
+		    			snippet= snippet.replaceAll("&(amp;)*#x0D;", "Di2015NewLine");
+		    			snippet= snippet.replaceAll("&(amp;)*#x0a;", "Di2015NewLine");
+		    			snippet= snippet.replaceAll("&(amp;)*#x0d;", "Di2015NewLine");
+		    
 		    			snippet = StringEscapeUtils.unescapeHtml4(snippet);
 		    			snippet = StringEscapeUtils.unescapeHtml3(snippet);
 		    			snippet = StringEscapeUtils.unescapeXml(snippet);

@@ -124,57 +124,7 @@
 4630070Di2015UniqueSeparatorprivate List<RadioButton> _radioButtonGroup = new List<RadioButton>();Di2015NewLineprivate void radioButton_CheckedChanged(object sender, EventArgs e)Di2015NewLine{Di2015NewLine    RadioButton rb = (RadioButton)sender;Di2015NewLine    if (rb.Checked)Di2015NewLine    {Di2015NewLine        foreach(RadioButton other in _radioButtonGroup)Di2015NewLine        {Di2015NewLine            if (other == rb)Di2015NewLine            {Di2015NewLine                continue;Di2015NewLine            }Di2015NewLine            other.Checked = false;Di2015NewLine        }Di2015NewLine    }Di2015NewLine}Di2015NewLine
 4630148Di2015UniqueSeparatorreadonly
 4630179Di2015UniqueSeparator<PlaceWareConfCenter authUser="apiuser" authPassword="Pa$$w0rd">Di2015NewLine   <CreateMeetingRequest name="status" title="Tailspin Toys Status Meeting" maxUsers="25">Di2015NewLine      <OptionList>Di2015NewLine         <TimeOption name="startTime" value="2006-12-01T18:00:00Z" />Di2015NewLine         <DecimalOption name="duration" value="1800" />Di2015NewLine         <StringOption name="audiencePassword" value="auPa$$w0rd" />Di2015NewLine         <StringOption name="presenterPassword" value="prPa$$w0rd" />Di2015NewLine      </OptionList>Di2015NewLine      <FieldList>Di2015NewLine         <Name>audienceInviteText</Name>Di2015NewLine         <Name>presenterInviteText</Name>Di2015NewLine      </FieldList>Di2015NewLine   </CreateMeetingRequest>Di2015NewLine</PlaceWareConfCenter>Di2015NewLine
-4630179Di2015UniqueSeparator<PlaceWareConfCenter>Di2015NewLine   <CreateMeetingReply>Di2015NewLine      <MeetingReply>Di2015NewLine         <OptionList>Di2015NewLine            <StringOption value="Jeff Hay has invited you to attend an online meeting using
-Microsoft Office Live Meeting.
-
-https://www.livemeeting.com/cc/contoso/join?id=name10&role=attend&pw=auPa%24%24w0rd
-
-
-
-AUDIO INFORMATION
-Audio has not been set up for this meeting.
-
-
-FIRST-TIME USERS
-To save time before the meeting, check your system to make sure it is
-ready to use Microsoft Office Live Meeting. 
- http://go.microsoft.com/fwlink/?linkid=52354
-
-TROUBLESHOOTING 
-Unable to join the meeting? Follow these steps:
-  1. Copy this address and paste it into your Web browser:
-     https://www.livemeeting.com/cc/contoso/join
-  2. Copy and paste the required information:
-        Meeting ID: name10
-        Entry Code: auPa$$w0rd
-        Location: https://www.livemeeting.com/cc/contoso/join
-If you still cannot enter the meeting, contact support:
-http://r.office.microsoft.com/r/rlidLiveMeeting?p1=7&p2=en_US&p3=LMInfo&p4=support" name="audienceInviteText">Di2015NewLine            </StringOption>Di2015NewLine            <StringOption value="Jeff Hay has invited you to present an online meeting using
-Microsoft Office Live Meeting.
-
- https://www.livemeeting.com/cc/contoso/xmlapi6/join?id=name10&role=present&pw=prPa%24%24w0rd
-
-
-
-AUDIO INFORMATION
-Audio has not been set up for this meeting.
-
-
-FIRST-TIME USERS
-To save time before the meeting, check your system to make sure it is
-ready to use Microsoft Office Live Meeting. 
- http://go.microsoft.com/fwlink/?linkid=52354
-
-TROUBLESHOOTING 
-Unable to join the meeting? Follow these steps:
-  1. Copy this address and paste it into your Web browser:
-     https://www.livemeeting.com/cc/contoso/join
-  2. Copy and paste the required information:
-        Meeting ID: name10
-        Entry Code: prPa$$w0rd
-        Location: https://www.livemeeting.com/cc/contoso/join
-If you still cannot enter the meeting, contact support:
-http://r.office.microsoft.com/r/rlidLiveMeeting?p1=7&p2=en_US&p3=LMInfo&p4=support" name="presenterInviteText">Di2015NewLine            </StringOption>Di2015NewLine         </OptionList>Di2015NewLine      </MeetingReply>Di2015NewLine   </CreateMeetingReply>Di2015NewLine</PlaceWareConfCenter>Di2015NewLine
+4630179Di2015UniqueSeparator<PlaceWareConfCenter>Di2015NewLine   <CreateMeetingReply>Di2015NewLine      <MeetingReply>Di2015NewLine         <OptionList>Di2015NewLine            <StringOption value="Jeff Hay has invited you to attend an online meeting usingDi2015NewLineDi2015NewLineMicrosoft Office Live Meeting.Di2015NewLineDi2015NewLineDi2015NewLineDi2015NewLinehttps://www.livemeeting.com/cc/contoso/join?id=name10&role=attend&pw=auPa%24%24w0rdDi2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineAUDIO INFORMATIONDi2015NewLineDi2015NewLineAudio has not been set up for this meeting.Di2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineFIRST-TIME USERSDi2015NewLineDi2015NewLineTo save time before the meeting, check your system to make sure it isDi2015NewLineDi2015NewLineready to use Microsoft Office Live Meeting. Di2015NewLineDi2015NewLine http://go.microsoft.com/fwlink/?linkid=52354Di2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineTROUBLESHOOTING Di2015NewLineDi2015NewLineUnable to join the meeting? Follow these steps:Di2015NewLineDi2015NewLine  1. Copy this address and paste it into your Web browser:Di2015NewLineDi2015NewLine     https://www.livemeeting.com/cc/contoso/joinDi2015NewLineDi2015NewLine  2. Copy and paste the required information:Di2015NewLineDi2015NewLine        Meeting ID: name10Di2015NewLineDi2015NewLine        Entry Code: auPa$$w0rdDi2015NewLineDi2015NewLine        Location: https://www.livemeeting.com/cc/contoso/joinDi2015NewLineDi2015NewLineIf you still cannot enter the meeting, contact support:Di2015NewLineDi2015NewLinehttp://r.office.microsoft.com/r/rlidLiveMeeting?p1=7&p2=en_US&p3=LMInfo&p4=support" name="audienceInviteText">Di2015NewLine            </StringOption>Di2015NewLine            <StringOption value="Jeff Hay has invited you to present an online meeting usingDi2015NewLineDi2015NewLineMicrosoft Office Live Meeting.Di2015NewLineDi2015NewLineDi2015NewLineDi2015NewLine https://www.livemeeting.com/cc/contoso/xmlapi6/join?id=name10&role=present&pw=prPa%24%24w0rdDi2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineAUDIO INFORMATIONDi2015NewLineDi2015NewLineAudio has not been set up for this meeting.Di2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineFIRST-TIME USERSDi2015NewLineDi2015NewLineTo save time before the meeting, check your system to make sure it isDi2015NewLineDi2015NewLineready to use Microsoft Office Live Meeting. Di2015NewLineDi2015NewLine http://go.microsoft.com/fwlink/?linkid=52354Di2015NewLineDi2015NewLineDi2015NewLineDi2015NewLineTROUBLESHOOTING Di2015NewLineDi2015NewLineUnable to join the meeting? Follow these steps:Di2015NewLineDi2015NewLine  1. Copy this address and paste it into your Web browser:Di2015NewLineDi2015NewLine     https://www.livemeeting.com/cc/contoso/joinDi2015NewLineDi2015NewLine  2. Copy and paste the required information:Di2015NewLineDi2015NewLine        Meeting ID: name10Di2015NewLineDi2015NewLine        Entry Code: prPa$$w0rdDi2015NewLineDi2015NewLine        Location: https://www.livemeeting.com/cc/contoso/joinDi2015NewLineDi2015NewLineIf you still cannot enter the meeting, contact support:Di2015NewLineDi2015NewLinehttp://r.office.microsoft.com/r/rlidLiveMeeting?p1=7&p2=en_US&p3=LMInfo&p4=support" name="presenterInviteText">Di2015NewLine            </StringOption>Di2015NewLine         </OptionList>Di2015NewLine      </MeetingReply>Di2015NewLine   </CreateMeetingReply>Di2015NewLine</PlaceWareConfCenter>Di2015NewLine
 4630292Di2015UniqueSeparatorSystem.Uri
 4630292Di2015UniqueSeparatorUri url = new Uri("http://www.example.com/mypage.aspx?myvalue1=hello&myvalue2=goodbye");Di2015NewLinestring path = String.Format("{0}{1}{2}{3}", url.Scheme, Di2015NewLine    Uri.SchemeDelimiter, url.Authority, url.AbsolutePath);Di2015NewLine
 4630292Di2015UniqueSeparatorsubstring

@@ -1,2 +1,0 @@
-2900693Di2015UniqueSeparator    <Window x:Class="MyProjectName.Window1"&#xA;    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"&#xA;    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&#xA;    xmlns:sys="clr-namespace:System;assembly=mscorlib"&#xA;    xmlns:Res="clr-namespace:MyProjectName.Resources"&#xA;    >&#xA;
-2900693Di2015UniqueSeparator<Window.Resources>&#xA;    <Res:FalseToStringConverter x:Key="falseToStringConv" />&#xA;    <sys:String x:Key="stringToShowInTooltip">This item is disabled because...</sys:String>&#xA;</Window.Resources>&#xA;

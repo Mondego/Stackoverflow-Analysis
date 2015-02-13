@@ -5396,11 +5396,9 @@
 4044483Di2015UniqueSeparatorList<T>
 4044485Di2015UniqueSeparator\\r\\n
 4044485Di2015UniqueSeparator\\n
-4044485Di2015UniqueSeparator<TextBlock x:Name="txtMyText" Text="Hello
-World"/>Di2015NewLine
+4044485Di2015UniqueSeparator<TextBlock x:Name="txtMyText" Text="HelloDi2015NewLineWorld"/>Di2015NewLine
 4044485Di2015UniqueSeparatortxtMyText.Text = "Hello\\nWorld";Di2015NewLine
-4044485Di2015UniqueSeparator<system:String x:Key="message" xml:space="preserve">Hello
-World</system:String>Di2015NewLine
+4044485Di2015UniqueSeparator<system:String x:Key="message" xml:space="preserve">HelloDi2015NewLineWorld</system:String>Di2015NewLine
 4044485Di2015UniqueSeparator<system:String x:Key="message" xml:space="preserve">HelloDi2015NewLineWorld</system:String>Di2015NewLine
 4044485Di2015UniqueSeparatorTextBlock
 4044575Di2015UniqueSeparator.ToString()

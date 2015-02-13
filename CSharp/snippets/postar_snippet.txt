@@ -3085,10 +3085,8 @@
 4464242Di2015UniqueSeparator<source name="MyTraceSource" switchName="sourceSwitch" switchType="System.Diagnostics.SourceSwitch">Di2015NewLine  <listeners>Di2015NewLine    <add name="console" type="System.Diagnostics.ConsoleTraceListener">Di2015NewLine      <filter type="YourNamespace.YourFilter, YourAssembly, ..." />Di2015NewLine    </add>Di2015NewLine  </listeners>Di2015NewLine</source>Di2015NewLine
 4464285Di2015UniqueSeparatorGraphPane pane = zedGraphControl1.GraphPane;Di2015NewLinePointPairList list = new PointPairList();Di2015NewLineRandom rand = new Random();Di2015NewLineDi2015NewLinefor (int i = 0; i < 50; i++)Di2015NewLine{Di2015NewLine    list.Add(i, rand.Next(15));Di2015NewLine}Di2015NewLineDi2015NewLineBarItem myBar = pane.AddBar("", list, Color.Red);Di2015NewLineColor[] colors = { Color.Red, Color.Yellow, Color.Green };Di2015NewLinemyBar.Bar.Fill = new Fill(colors);Di2015NewLinemyBar.Bar.Fill.Type = FillType.GradientByY;Di2015NewLinemyBar.Bar.Fill.RangeMin = 5;Di2015NewLinemyBar.Bar.Fill.RangeMax = 10;Di2015NewLineDi2015NewLinezedGraphControl1.AxisChange();Di2015NewLine
 4464345Di2015UniqueSeparatorpublic static string XmlEscape(string unescaped)Di2015NewLine{Di2015NewLine    XmlDocument doc = new XmlDocument();Di2015NewLine    var node = doc.CreateAttribute("foo");Di2015NewLine    node.InnerText = unescaped;Di2015NewLine    return node.InnerXml;Di2015NewLine}Di2015NewLine
-4464345Di2015UniqueSeparatorSecurityElement.Escape(unescaped).Replace("\\r", "").Replace("\\n", "
-");Di2015NewLine
-4464345Di2015UniqueSeparatorreturn node.InnerXml.Replace("\\r", "").Replace("\\n", "
-");Di2015NewLine
+4464345Di2015UniqueSeparatorSecurityElement.Escape(unescaped).Replace("\\r", "Di2015NewLine").Replace("\\n", "Di2015NewLine");Di2015NewLine
+4464345Di2015UniqueSeparatorreturn node.InnerXml.Replace("\\r", "Di2015NewLine").Replace("\\n", "Di2015NewLine");Di2015NewLine
 4464415Di2015UniqueSeparatorvar isOriginalModelValid = this.TryValidateModel(updated);Di2015NewLine
 4464418Di2015UniqueSeparatorvar sumOfSquares = Enumerable.Range(5, 1).Aggregate(0, (s, i) => s + i * i);Di2015NewLine
 4464418Di2015UniqueSeparators

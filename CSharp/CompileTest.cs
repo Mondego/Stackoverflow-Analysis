@@ -20,7 +20,7 @@ namespace CompileTest
 
         public static string compilable(string code)
         {
-           
+
             //Create the provider and parameters of the compiler
             CSharpCodeProvider provider = new CSharpCodeProvider();
             CompilerParameters parameters = new CompilerParameters();
@@ -73,28 +73,28 @@ namespace CompileTest
                 snippet = snippet.Replace("Di2015NewLine", "\n").Replace("<br>", "\n");
 
                 string errMsg = "";
-                if(snippet != null)
+                if (snippet != null)
                 {
                     errMsg = compilable(snippet);
                 }
-                
+
 
                 using (System.IO.StreamWriter file1 = new System.IO.StreamWriter(outFile1, true))
                 {
-                    
-                    
-                        if (errMsg != null && errMsg != "")
-                        {
 
-                            file1.Write(errMsg);// log the error messages
 
-                        
-                        }
-                        else
-                        {
-                            compilableCount++;
-                        }
-                    
+                    if (errMsg != null && errMsg != "")
+                    {
+
+                        file1.Write(errMsg);// log the error messages
+
+
+                    }
+                    else
+                    {
+                        compilableCount++;
+                    }
+
 
 
                 }
@@ -105,40 +105,42 @@ namespace CompileTest
 
 
 
-        
 
-                static void Main(string[] args)
+
+        static void Main(string[] args)
+        {
+            string[] postSplits = {
+                  "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah",
+                  "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar",
+                  "as", "at", "au", "av", "aw", "ax", "ay", "az", "ba", "bb",
+                  "bc", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bk", "bl",
+                  "bm", "bn", "bo", "bp", "bq", "br", "bs", "bt", "bu", "bv",
+                  "bw", "bx", "by", "bz", "ca", "cb", "cc", "cd", "ce", "cf",
+                  "cg", "ch", "ci", "cj", "ck", "cl", "cm", "cn", "co", "cp",
+                  "cq", "cr", "cs", "ct", "cu", "cv", "cw", "cx", "cy", "cz",
+                  "da", "db", "dc", "dd", "de", "df", "dg", "dh", "di", "dj",
+                  "dk", "dl", "dm", "dn", "do", "dp", "dq", "dr", "ds", "dt",
+                  "du", "dv" };
+
+
+
+            string inFile = "";
+            string outFile1 = "";
+
+
+            // initial compile
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\StackOverflow\\C#\\compileErrorInitial\\compilableCountInitial.txt"))
+            {
+                foreach (String post in postSplits)
                 {
-                 string[] postSplits = {
-                 "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah",
-                 "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar",
-                 "as", "at", "au", "av", "aw", "ax", "ay", "az", "ba", "bb",
-                 "bc", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bk", "bl",
-                 "bm", "bn", "bo", "bp", "bq", "br", "bs", "bt", "bu", "bv",
-                 "bw", "bx", "by", "bz", "ca", "cb", "cc", "cd", "ce", "cf",
-                 "cg", "ch", "ci", "cj", "ck", "cl", "cm", "cn", "co", "cp",
-                 "cq", "cr", "cs", "ct", "cu", "cv", "cw", "cx", "cy", "cz",
-                 "da", "db", "dc", "dd", "de", "df", "dg", "dh", "di", "dj",
-                 "dk", "dl", "dm", "dn", "do", "dp", "dq", "dr", "ds", "dt",
-                 "du", "dv" };
+                    Console.WriteLine("processing post" + post + " ......");
+                    inFile = "C:\\StackOverflow\\C#\\parsableInitial\\post" + post + "_parsable.txt";
+                    outFile1 = "C:\\StackOverflow\\C#\\compileErrorInitial\\post" + post + "_error.txt";
 
-                        string inFile = "";
-                        string outFile1 = "";
-                    
-            /*
-          // imitial compile
-          using (System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\StackOverflow\\C#\\compileErrorInitial\\compilableCountInitial.txt"))
-              {
-                  foreach (String post in postSplits)
-                  {
-                      Console.WriteLine("processing post" + post + " ......");
-                      inFile = "C:\\StackOverflow\\C#\\parsableInitial\\post" + post + "_parsable.txt";
-                      outFile1 = "C:\\StackOverflow\\C#\\compileErrorInitial\\post" + post + "_error.txt";
-            
-                      file.WriteLine("post" + post + "Di2015UniqueSeparator" + compileTest(inFile, outFile1));
-                  }
-              }
-             */ 
+                    file.WriteLine("post" + post + "Di2015UniqueSeparator" + compileTest(inFile, outFile1));
+                }
+            }
+
 
             /*
             // compile after remove
@@ -153,22 +155,22 @@ namespace CompileTest
                                     }
                                 }
               */
-              
-            // compile after fix2
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\StackOverflow\\C#\\compileErrorAfterFix2\\compilableCountAfterFix2.txt"))
-            {
-                foreach (String post in postSplits)
-                {
-                    Console.WriteLine("processing post" + post + " ......");
-                    inFile = "C:\\StackOverflow\\C#\\parsableAfterFix2\\post" + post + "_parsable.txt";
-                    outFile1 = "C:\\StackOverflow\\C#\\compileErrorAfterFix2\\post" + post + "_error.txt";
-                    file.WriteLine("post" + post + "Di2015UniqueSeparator" + compileTest(inFile, outFile1));
-                }
-            }
-          
+            /*
+          // compile after fix2
+          using (System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\StackOverflow\\C#\\compileErrorAfterFix2\\compilableCountAfterFix2.txt"))
+          {
+              foreach (String post in postSplits)
+              {
+                  Console.WriteLine("processing post" + post + " ......");
+                  inFile = "C:\\StackOverflow\\C#\\parsableAfterFix2\\post" + post + "_parsable.txt";
+                  outFile1 = "C:\\StackOverflow\\C#\\compileErrorAfterFix2\\post" + post + "_error.txt";
+                  file.WriteLine("post" + post + "Di2015UniqueSeparator" + compileTest(inFile, outFile1));
+              }
+          }
+        */
         }
 
-              
+
     }
 
 

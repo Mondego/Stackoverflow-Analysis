@@ -1889,8 +1889,7 @@
 18694018Di2015UniqueSeparatortry
 18694018Di2015UniqueSeparatorfinally
 18694040Di2015UniqueSeparatorint bookingID = 0;Di2015NewLineprotected void calculateButton_Click(object sender, EventArgs e)Di2015NewLine{ Di2015NewLine    bookingID += 1; // You can also use bookingID++Di2015NewLine    bookingIDTextBox.Text = bookingID.ToString();Di2015NewLine}Di2015NewLine
-18694055Di2015UniqueSeparator
-
+18694055Di2015UniqueSeparatorDi2015NewLineDi2015NewLine
 18694055Di2015UniqueSeparatorEnvironment.NewLine
 18694055Di2015UniqueSeparatorTextBoxes
 18694055Di2015UniqueSeparatorForm
@@ -1898,11 +1897,8 @@
 18694055Di2015UniqueSeparatorTrue
 18694055Di2015UniqueSeparatortextBox1
 18694055Di2015UniqueSeparatortextBox2
-18694055Di2015UniqueSeparatortextBox1.Text = element.ToString(); //
-Di2015NewLinestring text = element.ToString().Replace("
-", Environment.NewLine);Di2015NewLinetextBox2.Text = text; ///r/nDi2015NewLine
-18694055Di2015UniqueSeparator
-
+18694055Di2015UniqueSeparatortextBox1.Text = element.ToString(); //Di2015NewLineDi2015NewLineDi2015NewLinestring text = element.ToString().Replace("Di2015NewLineDi2015NewLine", Environment.NewLine);Di2015NewLinetextBox2.Text = text; ///r/nDi2015NewLine
+18694055Di2015UniqueSeparatorDi2015NewLineDi2015NewLine
 18694055Di2015UniqueSeparatorReplace
 18694055Di2015UniqueSeparatorXElement
 18694102Di2015UniqueSeparatorwhere
